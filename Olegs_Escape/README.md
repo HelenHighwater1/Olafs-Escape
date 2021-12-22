@@ -66,7 +66,7 @@ In addition, this project will include:
 
 **Day 7: 1/6** - Testing, improving gameplay, deploy to GitHub
 
-##Bonus – future features
+## Bonus – future features
 Add pause
 Obstacles will fall from the top and come up from the bottom to make the game more complex
 Extra points can be gained from picking up prizes on the way down. 
