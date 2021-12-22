@@ -23,10 +23,6 @@ In addition, this project will include:
 -	A production readme 
 
 
-
-
-
-
 ## Wireframes
 
 ![wireframe](images/Wireframes.png)
@@ -59,15 +55,14 @@ In addition, this project will include:
 -	Altitude tracker
 -	Start
 -	Win / lose
--	Pause? 
--	restart
+
 
 **Day 6:  1/5** – put it all together, add music, aesthetics etc
 
 **Day 7: 1/6** - Testing, improving gameplay, deploy to GitHub
 
 ## Bonus – future features
-Add pause
-Obstacles will fall from the top and come up from the bottom to make the game more complex
-Extra points can be gained from picking up prizes on the way down. 
-Multiple levels
+-  Add pause, restart options
+-  Obstacles will fall from the top and come up from the bottom to make the game more complex
+-  Extra points can be gained from picking up prizes on the way down. 
+-  Multiple levels
