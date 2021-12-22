@@ -11,16 +11,16 @@ Based on a character from the Blizzard Classic, The Lost Vikings, this game foll
 ## Functionality & MVPs
 
 In Oleg’s Escape, users will be able to:
-•	Start the game
-•	Use computer keys to navigate left and right on the screen 
-•	Use navigation to avoid obstacles as they appear on screen
-•	View how far they are from the ground on an altitude reader
-•	Win or lose the game
+- Start the game
+-	Use computer keys to navigate left and right on the screen 
+-	Use navigation to avoid obstacles as they appear on screen
+-	View how far they are from the ground on an altitude reader
+-	Win or lose the game
 
 In addition, this project will include:
-•	Background information on the game, including the rules
-•	A legend of keys used for gameplay
-•	A production readme 
+-	Background information on the game, including the rules
+-	A legend of keys used for gameplay
+-	A production readme 
 
 
 
