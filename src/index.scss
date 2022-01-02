@@ -22,12 +22,11 @@ h1 {
 
 #game-canvas { 
     padding: 15px;
-    width: 600px;
-    height: 400px;
-    background-color: rgb(89, 153, 147, .1);
+    background-color: rgb(89, 153, 147, .4);
     display: block;
     margin-left: auto;
     margin-right: auto;
+    border-radius: 10px;
 }
 
 #footer {

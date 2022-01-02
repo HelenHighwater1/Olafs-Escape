@@ -21,7 +21,7 @@ class Background {
         // console.log(ctx)
 
         BKG.addEventListener('load', e => {
-            ctx.drawImage(BKG, 0, 0);
+            ctx.drawImage(BKG, 0, 0, 600, 1771);
         });
     }
 }
