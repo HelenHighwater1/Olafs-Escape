@@ -4,7 +4,9 @@
   "description": "Play \"HERE\" <link>",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch --mode=development",
+    "build": "webpack --mode=production"
   },
   "keywords": [],
   "author": "",
@@ -21,16 +23,8 @@
     "sass-loader": "^12.4.0",
     "webpack": "^5.65.0",
     "webpack-cli": "^4.9.1"
-  }
-}
-
-
-{
+  },
   "browserslist": [
     "defaults"
-  ],
-  "scripts": {
-    "watch": "webpack --watch --mode=development",
-    "build": "webpack --mode=production"
-  },
+  ]
 }
