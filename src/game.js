@@ -1,15 +1,18 @@
 import Player from "./player";
 import Obstacles from "./obstacles";
 import Background from "./background";
-
+import Mothership from "./mothership";
 
 class Game {
     constructor(canvas) {
         this.ctx = canvas.getContext("2d");
         this.dimensions = { width: canvas.width, height: canvas.height };
-        this.background = new Background(this.dimensions);
-        this.obstacles = []
+        this.background = new Background(this.dimensions, this.ctx);
+        this.mothership = new Mothership(this.ctx)
+        // this.obstacles = []
+        this.player = new Player(this.ctx)
         // this.recieveKeys();
+        
         this.restart();
     }
 
@@ -23,6 +26,7 @@ class Game {
         // this.player = new Player();
 
         this.animate();
+        // this.scroll()
     }
 
     // recieveKeys(e){
@@ -39,8 +43,9 @@ class Game {
     // }
 
     animate(){
-        this.background.animate(this.ctx)
-        // this.player.animate(this.ctx)
+        this.background.animate()
+        this.mothership.animate()
+        this.player.animate()
         // this.obstacles.animate(this.ctx)
         // this.drawAltitude()
         // if (this.gameOver()) {
@@ -48,21 +53,21 @@ class Game {
         // }
     }
 
-    win(){
+    // win(){
     
-    }
-    lose(){
+    // }
+    // lose(){
 
-    }
+    // }
 
-    drawAltitude(){
-        this.ctx.font = "bold 20pt serif";
-        this.ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
-        this.ctx.fillText(this.score, 550, 10);
-        this.ctx.strokeStyle = "black";
-        this.ctx.lineWidth = 2;
+    // drawAltitude(){
+    //     this.ctx.font = "bold 20pt serif";
+    //     this.ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
+    //     this.ctx.fillText(this.score, 550, 10);
+    //     this.ctx.strokeStyle = "black";
+    //     this.ctx.lineWidth = 2;
 
-    }
+    // }
     
 }
 

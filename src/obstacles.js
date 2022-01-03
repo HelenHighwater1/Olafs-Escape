@@ -4,6 +4,8 @@
 
 // };
 
+
+
 // export default class Obstacles {
 //     constructor() {
 
@@ -23,3 +25,4 @@
 //             shipImg.src = "images/enemy_ship_right.png"
 //         });
 // }
+

@@ -1,5 +1,9 @@
 body {
     background-color: whitesmoke;
+    background-image: url("/images/yggdrasil.png");
+    background-repeat:no-repeat;
+    background-position-x: center;
+    background-position-y: center;
     font-family: 'Comfortaa', cursive;
     font-size: 13px;
 }
@@ -19,6 +23,8 @@ h1 {
     margin-right: auto;
 
 }
+
+
 
 #game-canvas { 
     padding: 15px;
