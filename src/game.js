@@ -11,31 +11,66 @@ class Game {
         this.mothership = new Mothership(this.ctx)
         // this.obstacles = []
         this.player = new Player(this.ctx)
-        // this.recieveKeys();
-        
-        this.restart();
+        this.recieveKeys();
+        this.running = false
+        this.play();
     }
+
 
     play() {
-        this.running = true;
-        this.animate();
-    }
-
-    restart() {
         this.altitude = 50000;
-        // this.player = new Player();
-
-        this.animate();
-        // this.scroll()
+        this.animate()
+        
     }
 
-    // recieveKeys(e){
+    recieveKeys(){
+        window.addEventListener("keydown", this.onKeyDown.bind(this)) 
+
+    }
+
+    onKeyDown(e){
+        switch (e.code) {
+        case "Space":
+            if (!this.running) {
+                this.running = true
+                this.background.speed = 1
+            }
+            // this.player.updateShield();
+            break;
+        case "ArrowLeft":
+            if (!this.running) {
+                this.running = true
+                this.background.speed = 10
+            }
+            this.player.dir -= .2;
+            break;
+        case "ArrowRight":
+            this.player.dir += .2;
+            break;
+        }
+    }
+
+
+    // key(e){
     //     if (!this.running) {
     //         this.play()
     //     }
-    //     // ADD EVENT LISTENERS - left, right, space
+        
     // }
 
+
+    
+    // registerEvents() {
+    //     this.boundClickHandler = this.click.bind(this);
+    //     this.ctx.canvas.addEventListener("mousedown", this.boundClickHandler);
+    // }
+
+    // click(e) {
+    //     if (!this.running) {
+    //         this.play();
+    //     }
+    //     this.bird.flap();
+    // }
     // gameOver() {
         //IF Altitude = 0  || collision detected
         //altitude method should be in...?
@@ -46,6 +81,7 @@ class Game {
         this.background.animate()
         this.mothership.animate()
         this.player.animate()
+        this.recieveKeys()
         // this.obstacles.animate(this.ctx)
         // this.drawAltitude()
         // if (this.gameOver()) {
