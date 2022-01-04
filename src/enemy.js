@@ -8,15 +8,23 @@ let SHIPLEFT = new Image()
 SHIPLEFT.src = "images/enemy_ship_left.png"
 let SHIPRIGHT = new Image()
 SHIPRIGHT.src = "images/enemy_ship_right.png"
+let SHIPOTHER = new Image()
+SHIPOTHER.src = "images/enemy_ship_other.png"
+
+
 
 export default class Enemy {
     constructor(ctx, dimensions) {
         this.ctx = ctx
         this.x = Math.random() * dimensions.width
-        this.y = 400 + Math.random() * 3500
+        this.y = 400 + Math.random() * 4500
         this.speed = 0
-        this.width = 100
+        this.width = 150
         this.height = 100  
+        this.leftSide = this.x
+        this.rightSide = this.x + this.width
+        this.top = this.y
+        this.bottom = this.y + this.height
         // this.dir = Math.random()  
     }
 
@@ -30,10 +38,13 @@ export default class Enemy {
     // }
 
     animate() {
-        this.ctx.drawImage(SHIPLEFT, this.x, this.y, this.width, this.height)
-        this.x -= 0.1
+        this.ctx.drawImage(SHIPRIGHT, this.x, this.y, this.width, this.height)
+        this.x += 0.12
         this.y -= .5
         window.requestAnimationFrame(this.animate.bind(this))
     }
+
+
+
 }
 

@@ -63,25 +63,13 @@ class Game {
 
 
     addEnemies(){
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 15; i++) {
             this.enemies.push(new Enemy(this.ctx, this.dimensions))
         }
         this.enemies.forEach(enemy => enemy.animate())
     }
 
 
-    
-    // registerEvents() {
-    //     this.boundClickHandler = this.click.bind(this);
-    //     this.ctx.canvas.addEventListener("mousedown", this.boundClickHandler);
-    // }
-
-    // click(e) {
-    //     if (!this.running) {
-    //         this.play();
-    //     }
-    //     this.bird.flap();
-    // }
     // gameOver() {
         //IF Altitude = 0  || collision detected
         //altitude method should be in...?
@@ -93,14 +81,34 @@ class Game {
         this.mothership.animate()
         this.player.animate()
         this.recieveKeys()
-        console.log(this.enemies)
-        // this.enemies.forEach(en => en.animate())
-        // this.enemy.animate()
+        // this.enemies.forEach(enemy => if collidesWith(this.player, enemy) game_over())
+        if (this.collidesWith()) console.log('COLLISION')
         // this.drawAltitude()
         // if (this.gameOver()) {
         //     alert(this.altitude) //ADD WIN/ LOSE
         // }
     }
+
+    collidesWith() {
+        console.log("inside collides with")
+        const _hit = (player, enemy) => {
+            if (player.rightSide > enemy.leftSide ||
+                player.leftSide < enemy.rightSide || 
+                player.top > enemy.bottom ||
+                player.bottom < enemy.top) {  
+                return false;
+            } else {
+                console.log('confirmed hit')
+                return true;
+            }
+        };
+        let collision = false;
+        this.enemies.forEach((enemy) => {
+            if ( _hit(this.player, enemy))  collision = true; 
+        });
+        return collision;
+    }
+
 
     // win(){
     
@@ -108,6 +116,8 @@ class Game {
     // lose(){
 
     // }
+
+
 
     // drawAltitude(){
     //     this.ctx.font = "bold 20pt serif";

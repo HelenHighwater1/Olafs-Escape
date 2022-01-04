@@ -12,7 +12,10 @@ class Player {
         this.height = 100;
         this.dir = 0;
         this.shieldUp = false;
-        
+        this.leftSide = this.x
+        this.rightSide = this.x + this.width
+        this.top = this.y
+        this.bottom = this.y + this.height
     }
 
     
@@ -31,19 +34,6 @@ class Player {
    
     }
 
-
-
-    scroll() {
-   
-        this.ctx.clearRect(0, 0, this.x, this.y)
-        this.ctx.drawImage(OLAF, this.x, this.y);
-        this.x += this.dir
-
-        window.requestAnimationFrame(this.animate.bind(this))
-        
-
-    }
-
     updateShield(){
         if (this.shieldUp) {
             this.shieldUp = false
@@ -55,26 +45,3 @@ class Player {
 
 export default Player;
 
-
-/// OLD CODE
-
-// animate(){
-//     addEventListener('load', e => {
-//         this.ctx.drawImage(OLAF, this.x, this.y, this.width, this.height);
-//         this.scroll(this.ctx)
-//     });
-
-// }
-
-
-
-// scroll() {
-
-//     this.ctx.clearRect(0, 0, this.x, this.y)
-//     this.ctx.drawImage(OLAF, this.x, this.y);
-//     this.x += this.dir
-
-//     window.requestAnimationFrame(this.scroll.bind(this))
-
-
-// }
