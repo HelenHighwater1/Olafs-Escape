@@ -2,7 +2,8 @@ let OLAF = new Image()
 OLAF.src = "images/gliding_right.png"
 
 class Player {
-    constructor(ctx){
+    constructor(dimensions, ctx){
+        this.dimensions = dimensions
         this.ctx = ctx
         this.x = 100
         this.y = 100
@@ -10,7 +11,7 @@ class Player {
         this.width = 100;
         this.height = 100;
         this.dir = 0;
-        // this.shield = 'up';
+        this.shieldUp = false;
         
     }
 
@@ -20,6 +21,11 @@ class Player {
         // this.ctx.clearRect(0, 0, this.x, this.y)
         this.ctx.drawImage(OLAF, this.x, this.y, this.width, this.height);
         this.x += this.dir
+        if (this.x > this.dimensions.width) {
+            this.x = 0
+        } else if (this.x < -this.width) {
+            this.x = this.dimensions.width
+        }
         window.requestAnimationFrame(this.animate.bind(this))
 
    
@@ -39,10 +45,10 @@ class Player {
     }
 
     updateShield(){
-        if (this.shield === up) {
-            this.shield = down
+        if (this.shieldUp) {
+            this.shieldUp = false
         } else {
-            this.shield = 'up'
+            this.shieldUp = true
         }
     }
 }

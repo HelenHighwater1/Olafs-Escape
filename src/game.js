@@ -1,5 +1,5 @@
 import Player from "./player";
-import Obstacles from "./obstacles";
+import Enemy from "./enemy";
 import Background from "./background";
 import Mothership from "./mothership";
 
@@ -9,8 +9,8 @@ class Game {
         this.dimensions = { width: canvas.width, height: canvas.height };
         this.background = new Background(this.dimensions, this.ctx);
         this.mothership = new Mothership(this.ctx)
-        // this.obstacles = []
-        this.player = new Player(this.ctx)
+        this.enemies = []
+        this.player = new Player(this.dimensions, this.ctx)
         this.recieveKeys();
         this.running = false
         this.play();
@@ -19,6 +19,7 @@ class Game {
 
     play() {
         this.altitude = 50000;
+        this.addEnemies()
         this.animate()
         
     }
@@ -29,34 +30,44 @@ class Game {
     }
 
     onKeyDown(e){
-        switch (e.code) {
-        case "Space":
-            if (!this.running) {
-                this.running = true
-                this.background.speed = 1
-            }
-            // this.player.updateShield();
-            break;
-        case "ArrowLeft":
-            if (!this.running) {
-                this.running = true
-                this.background.speed = 10
-            }
-            this.player.dir -= .2;
-            break;
-        case "ArrowRight":
-            this.player.dir += .2;
-            break;
+        if (!this.running) {
+            this.running = true
+            this.background.speed = 1
+            this.mothership.speed = 1.1
+            this.enemies.forEach(enem => enem.animate())
         }
+        if (this.gameOver) {
+            this.background.speed = 0
+            // this.player.dir = 0
+        }
+        switch (e.code) {
+            case "Space":
+                if (this.player.shieldUp === true) {
+                    this.player.shieldUp = false
+                    this.background.speed = 10
+                } else {
+                    this.player.shieldUp = true
+                    this.background.speed = 1
+                }
+                this.player.updateShield();
+                break;
+            case "ArrowLeft":
+                this.player.dir -= .2;
+                break; 
+            case "ArrowRight":
+                this.player.dir += .2;
+                break;
+        }
+        // refresh()
     }
 
 
-    // key(e){
-    //     if (!this.running) {
-    //         this.play()
-    //     }
-        
-    // }
+    addEnemies(){
+        for (let i = 0; i < 10; i++) {
+            this.enemies.push(new Enemy(this.ctx, this.dimensions))
+        }
+        this.enemies.forEach(enemy => enemy.animate())
+    }
 
 
     
@@ -82,7 +93,9 @@ class Game {
         this.mothership.animate()
         this.player.animate()
         this.recieveKeys()
-        // this.obstacles.animate(this.ctx)
+        console.log(this.enemies)
+        // this.enemies.forEach(en => en.animate())
+        // this.enemy.animate()
         // this.drawAltitude()
         // if (this.gameOver()) {
         //     alert(this.altitude) //ADD WIN/ LOSE
