@@ -16,6 +16,7 @@ SHIPOTHER.src = "images/enemy_ship_other.png"
 export default class Enemy {
     constructor(ctx, dimensions) {
         this.ctx = ctx
+        this.img = SHIPLEFT
         this.x = Math.random() * dimensions.width
         this.y = 400 + Math.random() * 4500
         this.speed = 0
@@ -32,19 +33,22 @@ export default class Enemy {
 
     // }
 
-    // moveEnemy(){
-    //     // this.y ++
-    //     // this.x += this.speed
-    // }
-
-    animate() {
-        this.ctx.drawImage(SHIPRIGHT, this.x, this.y, this.width, this.height)
-        this.x += 0.12
-        this.y -= .5
-        window.requestAnimationFrame(this.animate.bind(this))
+    move(){
+        this.y ++
+        this.x += this.speed
     }
 
 
 
-}
 
+}
+//OLD CODE
+
+    // animate() {
+    //     // while (!gameOver()){
+    //         this.ctx.drawImage(SHIPRIGHT, this.x, this.y, this.width, this.height)
+    //         this.x += 0.12
+    //         this.y -= .5
+    //         window.requestAnimationFrame(this.animate.bind(this))
+    //     // }
+    // }
