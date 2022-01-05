@@ -11,6 +11,9 @@ enemy.top = 2
 enemy.bottom = 4
 
 
+
+
+
 function collidesWith(player, enemies) {
     // console.log("inside collides with")
     let collide = false;

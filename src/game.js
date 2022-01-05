@@ -7,17 +7,18 @@ class Game {
     constructor(canvas) {
         this.ctx = canvas.getContext("2d");
         this.dimensions = { width: canvas.width, height: canvas.height };
+        this.altitude = 2500
+        this.altitudeSpeed = 0
         this.background = new Background(this.dimensions, this.ctx);
         this.mothership = new Mothership(this.ctx);
         this.enemies = [];
-        console.log(this.enemies)
         this.addEnemies();
-        console.log(this.enemies)
         this.player = new Player(this.dimensions, this.ctx);
         this.recieveKeys();
         this.running = false;
         this.gameOver = false;
         this.play();
+        
 
     }x
 
@@ -27,6 +28,7 @@ class Game {
             this.enemies.push(new Enemy(this.ctx, this.dimensions));
         }
     }
+    
 
     play() {
         this.animate()
@@ -54,7 +56,7 @@ class Game {
             })
             this.background.speed = 1
             this.mothership.speed = 1.1
-            // this.enemies.forEach(enem => enem.animate())
+            this.altitudeSpeed  = 1
         }
         if (this.gameOver) {
             this.background.speed = 0
@@ -65,8 +67,8 @@ class Game {
                 if (this.player.shieldUp === true) {
                     this.player.shieldUp = false
                     // this.player.img = this.player.shieldown
-                    this.background.speed = 10
-                    this.mothership.speed = 10
+                    // this.background.speed = 10
+                    // this.mothership.speed = 10
                     
                 } else {
                     this.player.shieldUp = true
@@ -103,6 +105,7 @@ class Game {
         //draw all classes
         this.ctx.clearRect(0, 0, 600, 400)
         this.ctx.drawImage(this.background.img, 0, this.background.y, 1200, 3500, 0, 0, 600, 1771);
+        this.drawAltitude()
         this.ctx.drawImage(this.mothership.img, 400, this.mothership.y, this.mothership.width, this.mothership.height )
         this.ctx.drawImage(this.player.img, this.player.x, this.player.y, this.player.width, this.player.height)
         this.enemies.forEach(enemy => {
@@ -114,30 +117,37 @@ class Game {
         if (this.background.y >= 2500) {
             this.gameWon()
             return 
-        }
+        } 
+        this.altitude -= this.altitudeSpeed
 
+        // collidesWith returns a boolean 
         if (this.collidesWith()) {
             console.log('GAME OVER')
-            return 
+            this.gameOver = true
+            this.gameLost()
+            return
+            // throw "game lost"
+        } else {
+            this.enemies.forEach(enemy => enemy.move())
+            this.mothership.move()
+            this.player.move()
+            window.requestAnimationFrame(this.animate.bind(this))
         }
-
-        this.mothership.move()
-        this.player.move()
-        this.enemies.forEach(enemy => enemy.move())
     
-        window.requestAnimationFrame(this.animate.bind(this))
+        // if (!this.gameOver) window.requestAnimationFrame(this.animate.bind(this))
 
     }
 
     collidesWith() {
+
         let collide = false;
         const _hit = (player, enemy) => {
-            if (player.leftSide > enemy.rightSide || // 
-                player.rightSide < enemy.leftSide || // 
-                player.top > enemy.bottom || //
-                player.bottom < enemy.top
-            ) { //
-                console.log("MISS")
+
+            if (player.x + 10 > enemy.x + enemy.width || 
+                player.x + player.width < enemy.x + 10 || 
+                player.y + 10 > enemy.y + enemy.height || 
+                player.y + player.height < enemy.y + 10 
+            ) { 
                 return false;
             } else {
                 console.log('HIT')
@@ -154,22 +164,27 @@ class Game {
     gameWon(){
         console.log('GAME WON')
         this.gameOver = true
+         
     }
     gameLost(){
         console.log("GAME LOST")
         this.gameOver = true
+        this.running = false
+        
+        // this.ctx.font = '48px serif'
+        // this.ctx.fillText('You lost!', 10, 50)
     }
 
 
 
-    // drawAltitude(){
-    //     this.ctx.font = "bold 20pt serif";
-    //     this.ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
-    //     this.ctx.fillText(this.score, 550, 10);
-    //     this.ctx.strokeStyle = "black";
-    //     this.ctx.lineWidth = 2;
+    drawAltitude(){
+        this.ctx.font = "15pt Comfortaa";
+        this.ctx.fillStyle = "rgba(211, 222, 226, 0.8)";
+        this.ctx.fillText(`Altitude: ${this.altitude}`, 450, 30);
+        this.ctx.strokeStyle = "black";
+        this.ctx.lineWidth = 2;
 
-    // }
+    }
     
 }
 

@@ -9,25 +9,17 @@ GLIDINGRIGHT.src = "images/gliding_right.png"
 
 class Player {
     constructor(dimensions, ctx){
-        this.img = GLIDINGRIGHT
-        this.dimensions = dimensions
-        this.ctx = ctx
-        this.x = 100
-        this.y = 100
+        this.img = GLIDINGRIGHT;
+        this.dimensions = dimensions;
+        this.ctx = ctx;
+        this.x = 400;
+        this.y = 140;
         this.velo = 0;
-        this.width = 100;
-        this.height = 100;
+        this.width = 60;
+        this.height = 60;
         this.dir = 0;
         this.shieldUp = false;
-        this.leftSide = this.x
-        this.rightSide = this.x + this.width
-        this.top = this.y
-        this.bottom = this.y + this.height
-        
-        // this.shieldUp = SHIELDUP
-        // this.shieldDown = SHIELDDOWN
-        // this.glideRight = GLIDINGRIGHT
-        // this.glideLeft = GLIDINGLEFT
+
     }
 
     
