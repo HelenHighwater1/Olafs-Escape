@@ -10,26 +10,27 @@ class Game {
         this.background = new Background(this.dimensions, this.ctx);
         this.mothership = new Mothership(this.ctx);
         this.enemies = [];
+        console.log(this.enemies)
         this.addEnemies();
+        console.log(this.enemies)
         this.player = new Player(this.dimensions, this.ctx);
         this.recieveKeys();
         this.running = false;
-
+        this.gameOver = false;
         this.play();
+
     }
 
+    
     addEnemies() {
         for (let i = 0; i < 15; i++) {
-            this.enemies.push(new Enemy(this.ctx, this.dimensions))
+            this.enemies.push(new Enemy(this.ctx, this.dimensions));
         }
-
     }
 
     play() {
-        this.altitude = 50000;
-        // this.addEnemies()
         this.animate()
-        
+        // while (!this.gameOver)this.animate() 
     }
 
  
@@ -71,14 +72,6 @@ class Game {
     }
 
 
-    addEnemies(){
-        for (let i = 0; i < 15; i++) {
-            this.enemies.push(new Enemy(this.ctx, this.dimensions))
-        }
-        
-    }
-
-
     // gameOver() {
         //IF Altitude = 0  || collision detected
         //altitude method should be in...?
@@ -86,26 +79,36 @@ class Game {
     // }
 
     animate(){
+        //draw all classes
         // console.log(this.enemies)
         this.ctx.clearRect(0, 0, 600, 400)
         this.ctx.drawImage(this.background.img, 0, this.background.y, 1200, 3500, 0, 0, 600, 1771);
         this.ctx.drawImage(this.mothership.img, 400, this.mothership.y, this.mothership.width, this.mothership.height )
         this.ctx.drawImage(this.player.img, this.player.x, this.player.y, this.player.width, this.player.height)
         this.enemies.forEach(enemy => {
-            // console.log(enemy.img)
             this.ctx.drawImage(enemy.img, enemy.x, enemy.y, enemy.width, enemy.height)
         })
+
+        //move all classes
         this.background.move()
-        if (this.background.y >= 2500) return gameWon
+        if (this.background.y >= 2500) {
+            this.gameWon()
+            return 
+        }
         this.mothership.move()
         this.player.move()
-        this.enemies.forEach(enemy => { 
-            if (this.collidesWith(this.player, enemy)){
-             return false
-            } else {
-                enemy.move()
-            }
-            });
+        
+        // this.enemies.forEach(enemy => { 
+        //     if (this.collidesWith(this.player, enemy)){
+        //         console.log('HIT')
+        //       this.gameLost()
+        //       return true
+        //     } else {
+        //         enemy.move()
+        //     }
+        // });
+        this.enemies.forEach( enemy => enemy.move())
+        if (this.collidesWith()) {console.log('GAME OVER')}
         window.requestAnimationFrame(this.animate.bind(this))
 
        // this.recieveKeys()
@@ -119,31 +122,35 @@ class Game {
     }
 
     collidesWith() {
-        console.log("inside collides with")
-        let hit = false;
+        // console.log("inside collides with")
+        let collide = false;
         const _hit = (player, enemy) => {
-            if (player.rightSide > enemy.leftSide ||
-                player.leftSide < enemy.rightSide || 
-                player.top > enemy.bottom ||
-                player.bottom < enemy.top) {  
+            if (player.leftSide > enemy.rightSide || //miss: 
+                player.rightSide < enemy.leftSide || // 
+                player.top > enemy.bottom || //
+                player.bottom < enemy.top
+            ) { //
+                console.log("MISS")
                 return false;
             } else {
-                console.log('confirmed hit')
+                console.log('HIT')
                 return true;
             }
         };
 
         this.enemies.forEach((enemy) => {
-            if ( _hit(this.player, enemy))  hit = true; 
+            if ( _hit(this.player, enemy))  collide = true; 
         });
-        return hit;
+        return collide;
     }
 
     gameWon(){
         console.log('GAME WON')
+        this.gameOver = true
     }
     gameLost(){
         console.log("GAME LOST")
+        this.gameOver = true
     }
 
 

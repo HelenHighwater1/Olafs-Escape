@@ -18,7 +18,7 @@ export default class Enemy {
         this.ctx = ctx
         this.img = SHIPLEFT
         this.x = Math.random() * dimensions.width
-        this.y = 400 + Math.random() * 4500
+        this.y = 400 + Math.random() * 2100
         this.speed = 0
         this.width = 150
         this.height = 100  
@@ -34,7 +34,7 @@ export default class Enemy {
     // }
 
     move(){
-        this.y ++
+        this.y -= 1
         this.x += this.speed
     }
 
