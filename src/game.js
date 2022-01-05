@@ -19,7 +19,7 @@ class Game {
         this.gameOver = false;
         this.play();
 
-    }
+    }x
 
     
     addEnemies() {
@@ -42,6 +42,16 @@ class Game {
     onKeyDown(e){
         if (!this.running) {
             this.running = true
+            this.enemies.forEach(enemy => {
+                if(enemy.dir <= 1) {
+                    enemy.xspeed = Math.random()
+                    enemy.yspeed = 1
+                }else {
+                    enemy.xspeed = -Math.random() 
+                    enemy.yspeed = 1
+                }
+
+            })
             this.background.speed = 1
             this.mothership.speed = 1.1
             // this.enemies.forEach(enem => enem.animate())
@@ -54,12 +64,22 @@ class Game {
             case "Space":
                 if (this.player.shieldUp === true) {
                     this.player.shieldUp = false
+                    // this.player.img = this.player.shieldown
                     this.background.speed = 10
+                    this.mothership.speed = 10
+                    
                 } else {
                     this.player.shieldUp = true
                     this.background.speed = 1
+                    // if (this.player.shieldUp && this.dir === 0) {
+                    //     this.player.img = this.player.shieldUp
+                    // } else if (this.player.shieldUp && this.dir > 0) {
+                    //     this.player.img = this.player.glideRight
+                    // } else {
+                    //     this.player.img = this.player.glideLeft
+                    // }
                 }
-                this.player.updateShield();
+                // this.player.updateShield();
                 break;
             case "ArrowLeft":
                 this.player.dir -= .2;
@@ -68,19 +88,19 @@ class Game {
                 this.player.dir += .2;
                 break;
         }
-        // refresh()
+ 
     }
 
 
-    // gameOver() {
-        //IF Altitude = 0  || collision detected
-        //altitude method should be in...?
-        // collision method in obsticals       
-    // }
+    gameOver() {
+    //    if (this.collidesWith()) {
+    //        this.gameOver = true 
+    //        console.log('YOU LOSE')
+    //    }
+    }
 
     animate(){
         //draw all classes
-        // console.log(this.enemies)
         this.ctx.clearRect(0, 0, 600, 400)
         this.ctx.drawImage(this.background.img, 0, this.background.y, 1200, 3500, 0, 0, 600, 1771);
         this.ctx.drawImage(this.mothership.img, 400, this.mothership.y, this.mothership.width, this.mothership.height )
@@ -95,37 +115,24 @@ class Game {
             this.gameWon()
             return 
         }
+
+        if (this.collidesWith()) {
+            console.log('GAME OVER')
+            return 
+        }
+
         this.mothership.move()
         this.player.move()
-        
-        // this.enemies.forEach(enemy => { 
-        //     if (this.collidesWith(this.player, enemy)){
-        //         console.log('HIT')
-        //       this.gameLost()
-        //       return true
-        //     } else {
-        //         enemy.move()
-        //     }
-        // });
-        this.enemies.forEach( enemy => enemy.move())
-        if (this.collidesWith()) {console.log('GAME OVER')}
+        this.enemies.forEach(enemy => enemy.move())
+    
         window.requestAnimationFrame(this.animate.bind(this))
 
-       // this.recieveKeys()
-        // this.enemies.forEach(enemy => if collidesWith(this.player, enemy) game_over())
-        // this.collidesWith()
-        // this.drawAltitude()
-        // if (this.gameOver()) {
-        //     alert(this.altitude) //ADD WIN/ LOSE
-        // }
-   
     }
 
     collidesWith() {
-        // console.log("inside collides with")
         let collide = false;
         const _hit = (player, enemy) => {
-            if (player.leftSide > enemy.rightSide || //miss: 
+            if (player.leftSide > enemy.rightSide || // 
                 player.rightSide < enemy.leftSide || // 
                 player.top > enemy.bottom || //
                 player.bottom < enemy.top
@@ -165,6 +172,8 @@ class Game {
     // }
     
 }
+
+
 
 
 export default Game;

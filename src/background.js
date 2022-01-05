@@ -29,18 +29,3 @@ class Background {
 
 export default Background;
 
-
-
-//OLD CODE
-// animate() {
-//     this.ctx.clearRect(0, 0, 600, 400)
-//     this.ctx.drawImage(BKG, 0, this.y, 1200, 3500, 0, 0, 600, 1771);
-//     this.y += this.speed
-//     console.log(this.y)
-//     if (this.y >= 2400) {
-//         return this.gameWon = true
-//     } else {
-//         window.requestAnimationFrame(this.animate.bind(this))
-//     }
-
-// }

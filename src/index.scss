@@ -54,3 +54,19 @@ h1 {
 #bkg {
     display: none;
 }
+
+
+.modal {
+  display: none;
+  position: fixed; 
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 75%; 
+  height: 75%; 
+  overflow: auto; 
+}
+
+.modal #win {
+    background: linear-gradient(to right, #bf953f, #b38738, #FBF5b7);
+}

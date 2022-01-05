@@ -1,9 +1,15 @@
-let OLAF = new Image()
-OLAF.src = "images/gliding_right.png"
+// let SHIELDUP = new Image()
+// SHIELDUP.src = "images/shield_up.png"
+// let SHIELDDOWN = new Image()
+// SHIELDDOWN.src = "images/shield_down.png"
+let GLIDINGRIGHT = new Image()
+GLIDINGRIGHT.src = "images/gliding_right.png"
+// let GLIDINGLEFT = new Image()
+// GLIDINGLEFT.src = "images/gliding_left.png"
 
 class Player {
     constructor(dimensions, ctx){
-        this.img = OLAF
+        this.img = GLIDINGRIGHT
         this.dimensions = dimensions
         this.ctx = ctx
         this.x = 100
@@ -17,10 +23,14 @@ class Player {
         this.rightSide = this.x + this.width
         this.top = this.y
         this.bottom = this.y + this.height
+        
+        // this.shieldUp = SHIELDUP
+        // this.shieldDown = SHIELDDOWN
+        // this.glideRight = GLIDINGRIGHT
+        // this.glideLeft = GLIDINGLEFT
     }
 
     
-
     move(){
         this.x += this.dir
         if (this.x > this.dimensions.width) {
@@ -41,19 +51,3 @@ class Player {
 
 export default Player;
 
-//OLD CODE
-
-// animate(){
-//     // this.ctx.drawImage(OLAF, this.x, this.y, this.width, this.height);
-//     // this.ctx.clearRect(0, 0, this.x, this.y)
-//     this.ctx.drawImage(OLAF, this.x, this.y, this.width, this.height);
-//     this.x += this.dir
-//     if (this.x > this.dimensions.width) {
-//         this.x = 0
-//     } else if (this.x < -this.width) {
-//         this.x = this.dimensions.width
-//     }
-//     window.requestAnimationFrame(this.animate.bind(this))
-
-
-// }
