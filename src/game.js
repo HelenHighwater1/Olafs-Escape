@@ -143,9 +143,9 @@ class Game {
                     player.y + 10 > enemy.y + enemy.height || 
                     player.y + player.height < enemy.y + 10 
                 ) { 
-                    console.log("NOT A HIT")
+           
                 } else {
-                    console.log('HIT')
+                   
                     collide = true; 
                     this.gameOver = true
                 }
@@ -155,13 +155,12 @@ class Game {
     }
 
     gameWon(){
-        console.log('GAME WON')
+       
         this.gameOver = true
         this.win.style.display = 'block'
          
     }   
     gameLost(){
-        console.log("GAME LOST")
         this.gameOver = true
         this.running = false
         this.lose.style.display = 'block'
