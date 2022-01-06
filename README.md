@@ -1,5 +1,6 @@
 # Oleg’s Escape
 
+[Play game!](https://helenedwards.github.io/Olafs-Escape/ "Olaf's Escape")
 
 ## Background 
 

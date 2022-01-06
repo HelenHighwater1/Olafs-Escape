@@ -48,11 +48,13 @@ h1 {
     justify-content: space-evenly;
 
 }
-#footer > a {
+#footer > a, img {
     display: flex;
     height: 60px;
     width:60px;
 }
+
+
 
 #bkg {
     display: none;
