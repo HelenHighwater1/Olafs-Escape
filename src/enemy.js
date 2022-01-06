@@ -9,18 +9,18 @@ export default class Enemy {
     constructor(ctx, dimensions) {
         this.ctx = ctx
         this.x = Math.random() * dimensions.width
-        this.y = 400 + Math.random() * 2400
-        this.yspeed = 1
+        this.y = 300 + Math.random() * 2400
+        this.yspeed = 0
         this.xspeed = 0
         this.width = 150
         this.height = 100  
 
         this.dir = Math.ceil(Math.random()*2)
-        this.img 
         if (this.dir <= 1) {
-            this.img = SHIPRIGHT
-        } else {
             this.img = SHIPLEFT
+
+        } else {
+            this.img = SHIPRIGHT
         }
     
     }

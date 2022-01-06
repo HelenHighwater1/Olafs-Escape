@@ -55,18 +55,47 @@ h1 {
   display: none;
 }
 
-.modal {
-  display: none;
-  position: fixed;
+.modal > #instructions {
   z-index: 1;
-  /* Sit on top */
+  display: block;
+  position: absolute;
+  height: 400px;
+  width: 600px;
+  padding: 15px;
+  background-color: rgba(89, 153, 147, 0.4);
   left: 0;
-  top: 0;
-  width: 75%;
-  height: 75%;
-  overflow: auto;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
 }
 
 .modal #win {
-  background: linear-gradient(to right, #bf953f, #b38738, #FBF5b7);
+  z-index: 1;
+  display: none;
+  position: absolute;
+  height: 400px;
+  width: 600px;
+  padding: 15px;
+  background-color: rgba(226, 236, 235, 0.3);
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+}
+
+.modal #lose {
+  z-index: 1;
+  display: none;
+  position: absolute;
+  height: 400px;
+  width: 600px;
+  padding: 15px;
+  background-color: rgba(226, 236, 235, 0.3);
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
 }

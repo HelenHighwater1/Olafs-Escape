@@ -25,6 +25,9 @@ h1 {
 }
 
 
+// .play {
+
+// }
 
 #game-canvas { 
     padding: 15px;
@@ -56,17 +59,62 @@ h1 {
 }
 
 
-.modal {
-  display: none;
-  position: fixed; 
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 75%; 
-  height: 75%; 
-  overflow: auto; 
+// #instructions {
+//   display: block;
+//   position: fixed; 
+//   margin-left: auto;
+//   margin-right: auto;
+//   z-index: 1; /* Sit on top */
+//   left: 75px;
+//   top: 150px;
+//   width: 80%;
+
+
+// //   background-color: rgb(247, 245, 245, .3);
+// //   overflow: auto; 
+// }
+
+.modal > #instructions{
+    z-index: 1; 
+    display: block;
+    position: absolute;
+    height: 400px;
+    width: 600px;
+    padding: 15px;
+    background-color: rgb(89, 153, 147, .4);
+    left: 0; 
+    right: 0; 
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
 }
 
 .modal #win {
-    background: linear-gradient(to right, #bf953f, #b38738, #FBF5b7);
+    z-index: 1; 
+    display: none;
+    position: absolute;
+    height: 400px;
+    width: 600px;
+    padding: 15px;
+    background-color: rgba(226, 236, 235, 0.3);
+    left: 0; 
+    right: 0; 
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+
+}
+.modal #lose {
+    z-index: 1; 
+    display: none;
+    position: absolute;
+    height: 400px;
+    width: 600px;
+    padding: 15px;
+    background-color: rgba(226, 236, 235, 0.3);
+    left: 0; 
+    right: 0; 
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
 }

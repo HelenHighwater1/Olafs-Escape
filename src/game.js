@@ -12,16 +12,15 @@ class Game {
         this.background = new Background(this.dimensions, this.ctx);
         this.mothership = new Mothership(this.ctx);
         this.enemies = [];
-        this.addEnemies();
         this.player = new Player(this.dimensions, this.ctx);
         this.recieveKeys();
         this.running = false;
         this.gameOver = false;
-        this.play();
-        
-
-    }x
-
+        this.instructions = document.getElementById("instructions")
+        this.win = document.getElementById("win")
+        this.lose = document.getElementById("lose")
+    }
+    
     
     addEnemies() {
         for (let i = 0; i < 15; i++) {
@@ -29,10 +28,11 @@ class Game {
         }
     }
     
+    
 
     play() {
-        this.animate()
-        // while (!this.gameOver)this.animate() 
+        this.addEnemies();
+        this.animate();
     }
 
  
@@ -43,10 +43,12 @@ class Game {
 
     onKeyDown(e){
         if (!this.running) {
+            this.instructions.style.display = 'none'
+            this.play();
             this.running = true
             this.enemies.forEach(enemy => {
                 if(enemy.dir <= 1) {
-                    enemy.xspeed = Math.random()
+                    enemy.xspeed = Math.random() 
                     enemy.yspeed = 1
                 }else {
                     enemy.xspeed = -Math.random() 
@@ -59,7 +61,7 @@ class Game {
             this.altitudeSpeed  = 1
         }
         if (this.gameOver) {
-            this.background.speed = 0
+            location.reload();
             // this.player.dir = 0
         }
         switch (e.code) {
@@ -93,14 +95,6 @@ class Game {
  
     }
 
-
-    gameOver() {
-    //    if (this.collidesWith()) {
-    //        this.gameOver = true 
-    //        console.log('YOU LOSE')
-    //    }
-    }
-
     animate(){
         //draw all classes
         this.ctx.clearRect(0, 0, 600, 400)
@@ -121,58 +115,57 @@ class Game {
         this.altitude -= this.altitudeSpeed
 
         // collidesWith returns a boolean 
+        if (this.gameOver === false){
         if (this.collidesWith()) {
-            console.log('GAME OVER')
             this.gameOver = true
             this.gameLost()
+            this.running = false
             return
-            // throw "game lost"
+
         } else {
             this.enemies.forEach(enemy => enemy.move())
             this.mothership.move()
             this.player.move()
             window.requestAnimationFrame(this.animate.bind(this))
         }
-    
+    }
         // if (!this.gameOver) window.requestAnimationFrame(this.animate.bind(this))
 
     }
 
     collidesWith() {
-
-        let collide = false;
-        const _hit = (player, enemy) => {
-
-            if (player.x + 10 > enemy.x + enemy.width || 
-                player.x + player.width < enemy.x + 10 || 
-                player.y + 10 > enemy.y + enemy.height || 
-                player.y + player.height < enemy.y + 10 
-            ) { 
-                return false;
-            } else {
-                console.log('HIT')
-                return true;
-            }
-        };
-
+        let collide = false
+        let player = this.player
         this.enemies.forEach((enemy) => {
-            if ( _hit(this.player, enemy))  collide = true; 
-        });
+            if (collide === false)
+                if (player.x + 10 > enemy.x + enemy.width || 
+                    player.x + player.width < enemy.x + 10 || 
+                    player.y + 10 > enemy.y + enemy.height || 
+                    player.y + player.height < enemy.y + 10 
+                ) { 
+                    console.log("NOT A HIT")
+                } else {
+                    console.log('HIT')
+                    collide = true; 
+                    this.gameOver = true
+                }
+        })
+
         return collide;
     }
 
     gameWon(){
         console.log('GAME WON')
         this.gameOver = true
+        this.win.style.display = 'block'
          
-    }
+    }   
     gameLost(){
         console.log("GAME LOST")
         this.gameOver = true
         this.running = false
-        
-        // this.ctx.font = '48px serif'
-        // this.ctx.fillText('You lost!', 10, 50)
+        this.lose.style.display = 'block'
+
     }
 
 
