@@ -35,34 +35,32 @@ In addition, this project will include:
 
 ## Implementation Timeline
 
-**Day 1: 12/30** - General setup, canvas research, sprite research
--   Create canvas, add background
+**Day 1:** - General setup, canvas research, sprite research
+-   Create canvas, basic HTML structure
 
-**Day 2:  12/31** - Implement background and obstacles
--	Generate random obstacles 
--	Render background, animate for descent (2 speeds- make it appear the character is descending slowly or quickly)
+**Day 2:** - Implement background, create Player class 
+-	Render background, animate for descent 
+-   Create player, allow player to move left / right
 -	Create start position
 
-**Day 3: 1/2** – Create Oleg, start collision detection
--	Code to lift / lower shield, move right and left while gliding (first implementation will just work off of 4 static images)
--	Add to canvas and test
+**Day 3:** – Create Enemies, start Collision Detection
+-   Create enemies and randomly generate them on the game board
 -   Start collision work
 
-**Day 4: 1/3** - Complete Collision Detection 
+**Day 4:** - Complete Collision Detection 
 
-**Day 5:  1/4** – Work on game logic
+**Day 5:** – Work on game logic
 -	Altitude tracker
 -	Start
 -	Win / lose
 
-**Day 6:  1/5** – Add animation
--   Include sprites for additional movement options
+**Day 6:** – Add animation
+-   Test and Deploy on GitHub Pages
 
-**Day 7: 1/6** - Test and Deploy on GitHub Pages
 
 ## Bonus – future features
--  Replace sprites with custom art
--  Add pause, restart options
--  Obstacles will fall from the top and come up from the bottom to make the game more complex
+-  Replace player image with animated sprites
+-  Add pause
+-  2 speeds for difficulty
 -  Extra points can be gained from picking up prizes on the way down. 
 -  Multiple levels
