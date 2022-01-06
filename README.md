@@ -34,6 +34,46 @@ In addition, this project will include:
 -	JavaScript
 -	HTML, CSS
 
+## Code Snippet - Call to animate game
+
+One tricky part of this project was figuring out where and in what order to animate.  I initially made each class control it's own animation, which was a big mistake.  Even though the classes all moved in different ways, there was a lot of redundant code, and stopping the animation on game over was also impossible to disperse to each of the classes from the game class.  I rewrote all that code here in 3 steps - drawing the classes, checking for collisions, then moving the objects.  
+
+```javascript
+animate(){
+    //draw all classes
+    this.ctx.clearRect(0, 0, 600, 400)
+    this.ctx.drawImage(this.background.img, 0, this.background.y, 1200, 3500, 0, 0, 600, 1771);
+    this.drawAltitude()
+    this.ctx.drawImage(this.mothership.img, 400, this.mothership.y, this.mothership.width, this.mothership.height )
+    this.ctx.drawImage(this.player.img, this.player.x, this.player.y, this.player.width, this.player.height)
+    this.enemies.forEach(enemy => {
+         this.ctx.drawImage(enemy.img, enemy.x, enemy.y, enemy.width, enemy.height)
+    })
+
+    //move all classes
+    this.background.move()
+    if (this.background.y >= 2500) {
+        this.gameWon()
+        return 
+    } 
+    this.altitude -= this.altitudeSpeed
+
+    // checks for collision before making the next animation frame
+    if (this.gameOver === false){
+    if (this.collidesWith()) {
+        this.gameOver = true
+        this.gameLost()
+        this.running = false
+        return
+    } else {
+        this.enemies.forEach(enemy => enemy.move())
+        this.mothership.move()
+        this.player.move()
+        window.requestAnimationFrame(this.animate.bind(this))
+    }
+}```
+
+
 ## Implementation Timeline
 
 **Day 1:** - General setup, canvas research, sprite research

@@ -114,14 +114,13 @@ class Game {
         } 
         this.altitude -= this.altitudeSpeed
 
-        // collidesWith returns a boolean 
+        // checks for collision before making the next animation frame
         if (this.gameOver === false){
         if (this.collidesWith()) {
             this.gameOver = true
             this.gameLost()
             this.running = false
             return
-
         } else {
             this.enemies.forEach(enemy => enemy.move())
             this.mothership.move()
@@ -129,7 +128,6 @@ class Game {
             window.requestAnimationFrame(this.animate.bind(this))
         }
     }
-        // if (!this.gameOver) window.requestAnimationFrame(this.animate.bind(this))
 
     }
 

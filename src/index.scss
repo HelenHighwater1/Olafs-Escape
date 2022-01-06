@@ -25,10 +25,6 @@ h1 {
 }
 
 
-// .play {
-
-// }
-
 #game-canvas { 
     padding: 15px;
     background-color: rgb(89, 153, 147, .4);
@@ -61,22 +57,7 @@ h1 {
 }
 
 
-// #instructions {
-//   display: block;
-//   position: fixed; 
-//   margin-left: auto;
-//   margin-right: auto;
-//   z-index: 1; /* Sit on top */
-//   left: 75px;
-//   top: 150px;
-//   width: 80%;
-
-
-// //   background-color: rgb(247, 245, 245, .3);
-// //   overflow: auto; 
-// }
-
-.modal > #instructions{
+.modal > #instructions {
     z-index: 1; 
     display: block;
     position: absolute;
