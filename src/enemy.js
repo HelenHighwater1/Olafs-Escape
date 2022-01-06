@@ -8,7 +8,7 @@ SHIPRIGHT.src = "images/enemy_ship_right.png"
 export default class Enemy {
     constructor(ctx, dimensions) {
         this.ctx = ctx
-        this.x = Math.random() * dimensions.width
+        this.x = Math.random() * dimensions.width * 2
         this.y = 300 + Math.random() * 2400
         this.yspeed = 0
         this.xspeed = 0
