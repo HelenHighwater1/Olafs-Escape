@@ -71,7 +71,8 @@ animate(){
         this.player.move()
         window.requestAnimationFrame(this.animate.bind(this))
     }
-}```
+}
+```
 
 
 ## Implementation Timeline
